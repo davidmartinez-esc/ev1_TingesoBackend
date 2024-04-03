@@ -22,7 +22,7 @@ public class VehiculoController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<VehiculoEntity> saveTipoDeRep(@RequestBody VehiculoEntity vehiculo) {
+    public ResponseEntity<VehiculoEntity> saveVehiculo(@RequestBody VehiculoEntity vehiculo) {
         VehiculoEntity newVehiculo = vehiculoService.saveVehiculo(vehiculo);
         return ResponseEntity.ok(newVehiculo);
     }

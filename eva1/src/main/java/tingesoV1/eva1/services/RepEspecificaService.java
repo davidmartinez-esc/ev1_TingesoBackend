@@ -19,8 +19,8 @@ public class RepEspecificaService {
         return (ArrayList<RepEspecificaEntity>) repEspecificaRepository.findAll();
     }
 
-    public RepEspecificaEntity saveTipoDeRep(RepEspecificaEntity paycheck){
-        return repEspecificaRepository.save(paycheck);
+    public RepEspecificaEntity saveTipoDeRep(RepEspecificaEntity reparacion){
+        return repEspecificaRepository.save(reparacion);
     }
 
 
