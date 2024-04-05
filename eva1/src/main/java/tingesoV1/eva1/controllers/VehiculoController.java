@@ -26,4 +26,16 @@ public class VehiculoController {
         VehiculoEntity newVehiculo = vehiculoService.saveVehiculo(vehiculo);
         return ResponseEntity.ok(newVehiculo);
     }
+    @PutMapping("/")
+    public ResponseEntity<VehiculoEntity> updateVehiculo(@RequestBody VehiculoEntity employee){
+        VehiculoEntity vehiculoUpdated = vehiculoService.updateVehiculo(employee);
+        return ResponseEntity.ok(vehiculoUpdated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> deleteVehiculoById(@PathVariable Long id) throws Exception {
+        var isDeleted= vehiculoService.deleteVehiculo(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

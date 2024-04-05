@@ -23,4 +23,18 @@ public class VehiculoService {
     }
 
 
+    public VehiculoEntity updateVehiculo(VehiculoEntity vehiculo) {
+        return vehiculoRepository.save(vehiculo);
+    }
+
+    public boolean deleteVehiculo(Long id) throws Exception {
+        try{
+            vehiculoRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
 }
