@@ -41,4 +41,6 @@ public class IngresoARepEntity {
 
     @Temporal(TemporalType.TIME)
     private Date horaRecogida;
+
+    private int idVehiculo;
 }

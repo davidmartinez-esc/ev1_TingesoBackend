@@ -24,6 +24,6 @@ public class VehiculoEntity {
     private String tipo;
     private String tipoMotor;
     private int numeroDeAsientos;
-    private int anioFabricacion;
+    private int anio_Fabricacion;
 }
 

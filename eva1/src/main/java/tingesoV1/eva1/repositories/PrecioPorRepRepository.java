@@ -8,6 +8,17 @@ import tingesoV1.eva1.entities.PrecioPorRepEntity;
 import java.util.List;
 
 public interface PrecioPorRepRepository extends JpaRepository<PrecioPorRepEntity,Long> {
-    @Query(value = "SELECT Gasolina FROM extra_hours WHERE extra_hours.rut = :rut AND YEAR(extra_hours.date)=:year AND MONTH(extra_hours.date)=:month", nativeQuery = true)
-    List<ExtraHoursEntity> getExtraHoursByRutYearMonth(@Param("rut") String rut, @Param("year") int year, @Param("month") int month,@Param("target") String target);
+    @Query(value = "SELECT precio_gasolina FROM precio_reparacion WHERE nombre_de_la_rep = :nombre_rep", nativeQuery = true)
+    Integer getPrecioRep_MotorGasolina(@Param("nombre_rep") String nombre_rep);
+
+    @Query(value = "SELECT precio_diesel FROM precio_reparacion WHERE nombre_de_la_rep = :nombre_rep", nativeQuery = true)
+    Integer getPrecioRep_MotorDiesel(@Param("nombre_rep") String nombre_rep);
+
+    @Query(value = "SELECT precio_electrico FROM precio_reparacion WHERE nombre_de_la_rep = :nombre_rep", nativeQuery = true)
+    Integer getPrecioRep_MotorElectrico(@Param("nombre_rep") String nombre_rep);
+
+    @Query(value = "SELECT precio_hibrido FROM precio_reparacion WHERE nombre_de_la_rep = :nombre_rep", nativeQuery = true)
+    Integer getPrecioRep_MotorHibrido(@Param("nombre_rep") String nombre_rep);
+
+
 }
