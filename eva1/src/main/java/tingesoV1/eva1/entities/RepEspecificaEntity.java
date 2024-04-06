@@ -18,6 +18,11 @@ public class RepEspecificaEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    @Column(nullable = false)
+    private int idIngresoARep;
+
     private String nombreDeLaRep;
     private int precioDeLaReparacion;
+
+
 }

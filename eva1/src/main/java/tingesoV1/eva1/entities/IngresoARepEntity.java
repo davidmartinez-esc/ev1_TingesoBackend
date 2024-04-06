@@ -21,6 +21,8 @@ public class IngresoARepEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
+    private int idVehiculo;
+
     private int costoTotal;
 
     @Temporal(TemporalType.DATE)
@@ -42,5 +44,5 @@ public class IngresoARepEntity {
     @Temporal(TemporalType.TIME)
     private Date horaRecogida;
 
-    private int idVehiculo;
+
 }
