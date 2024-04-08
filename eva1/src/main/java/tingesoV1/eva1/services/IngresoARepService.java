@@ -3,6 +3,7 @@ package tingesoV1.eva1.services;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tingesoV1.eva1.dto.CreacionIngreso;
 import tingesoV1.eva1.dto.FormRegistroIngresoRep;
 import tingesoV1.eva1.entities.IngresoARepEntity;
 
@@ -11,7 +12,10 @@ import tingesoV1.eva1.entities.RepEspecificaEntity;
 import tingesoV1.eva1.repositories.IngresoARepRepository;
 import tingesoV1.eva1.repositories.RepEspecificaRepository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,6 +33,9 @@ public class IngresoARepService {
         return ingresoARepRepository.save(reparacion);
     }
 
+
+
+  /*
     @Transactional
     public IngresoARepEntity saveIngresoARep(FormRegistroIngresoRep ingresoForm){
         IngresoARepEntity ingreso= new IngresoARepEntity();
@@ -60,6 +67,8 @@ public class IngresoARepService {
 
         return ingresoARepRepository.save(ingreso);
     }
+    */
+
 
     public IngresoARepEntity updateIngresoARep(IngresoARepEntity ingresoARep) {
         return ingresoARepRepository.save(ingresoARep);

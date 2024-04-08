@@ -4,11 +4,13 @@ package tingesoV1.eva1.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tingesoV1.eva1.dto.CreacionIngreso;
 import tingesoV1.eva1.dto.FormRegistroIngresoRep;
 import tingesoV1.eva1.entities.IngresoARepEntity;
 import tingesoV1.eva1.entities.IngresoARepEntity;
 import tingesoV1.eva1.services.IngresoARepService;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -30,11 +32,9 @@ public class IngresoARepController {
         return ResponseEntity.ok(newReparacion);
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<IngresoARepEntity> saveIngresoARepFull(@RequestBody FormRegistroIngresoRep ingreso) {
-        IngresoARepEntity newReparacion = ingresoARepService.saveIngresoARep(ingreso);
-        return ResponseEntity.ok(newReparacion);
-    }
+
+
+
 
     @PutMapping("/")
     public ResponseEntity<IngresoARepEntity> updateIngresoARep(@RequestBody IngresoARepEntity employee){

@@ -1,11 +1,13 @@
 package tingesoV1.eva1.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
 
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -29,20 +31,23 @@ public class IngresoARepEntity {
     private Date fechaIngreso;
 
     @Temporal(TemporalType.TIME)
-    private Date horaIngreso;
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime horaIngreso;
 
 
     @Temporal(TemporalType.DATE)
     private Date fechaSalida;
 
     @Temporal(TemporalType.TIME)
-    private Date horaSalida;
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime horaSalida;
 
     @Temporal(TemporalType.DATE)
     private Date fechaRecogida;
 
     @Temporal(TemporalType.TIME)
-    private Date horaRecogida;
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime horaRecogida;
 
 
 }
