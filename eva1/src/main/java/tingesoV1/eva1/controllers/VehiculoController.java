@@ -27,8 +27,8 @@ public class VehiculoController {
         return ResponseEntity.ok(newVehiculo);
     }
     @PutMapping("/")
-    public ResponseEntity<VehiculoEntity> updateVehiculo(@RequestBody VehiculoEntity employee){
-        VehiculoEntity vehiculoUpdated = vehiculoService.updateVehiculo(employee);
+    public ResponseEntity<VehiculoEntity> updateVehiculo(@RequestBody VehiculoEntity vehiculo){
+        VehiculoEntity vehiculoUpdated = vehiculoService.updateVehiculo(vehiculo);
         return ResponseEntity.ok(vehiculoUpdated);
     }
 
