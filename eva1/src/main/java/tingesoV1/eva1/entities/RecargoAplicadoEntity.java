@@ -6,18 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "descuento_aplicado")
+@Table(name = "recargo_aplicado")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DescuentoAplicadoEntity {
+public class RecargoAplicadoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private String tipoDeDecuento;
-    private int porcentajeDescuento;
+    private String tipoDeRecargo;
+    private int porcentajeRecargo;
 
     private int idIngreso;
 }
