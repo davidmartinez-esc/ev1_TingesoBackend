@@ -2,8 +2,10 @@ package tingesoV1.eva1.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tingesoV1.eva1.entities.BonoAplicadoEntity;
 import tingesoV1.eva1.entities.DescuentoAplicadoEntity;
 import tingesoV1.eva1.entities.RecargoAplicadoEntity;
+import tingesoV1.eva1.repositories.BonoAplicadoRepository;
 import tingesoV1.eva1.repositories.DescuentoAplicadoRepository;
 import tingesoV1.eva1.repositories.RecargoAplicadoRepository;
 
@@ -16,6 +18,9 @@ public class AplicadosAPrecioService {
 
     @Autowired
     RecargoAplicadoRepository recargoAplicadoRepository;
+
+    @Autowired
+    BonoAplicadoRepository bonoAplicadoRepository;
 
     public ArrayList<DescuentoAplicadoEntity> getDescuentosAplicados(){
         return (ArrayList<DescuentoAplicadoEntity>) descuentoAplicadoRepository.findAll();
@@ -70,5 +75,29 @@ public class AplicadosAPrecioService {
 
     }
 
+    //-----------------BONOS APLICADOS
 
+
+    public ArrayList<BonoAplicadoEntity> getBonosAplicados(){
+        return (ArrayList<BonoAplicadoEntity>) bonoAplicadoRepository.findAll();
+    }
+
+    public BonoAplicadoEntity saveBonoAplicado(BonoAplicadoEntity bonoAplicado){
+        return bonoAplicadoRepository.save(bonoAplicado);
+    }
+
+
+    public BonoAplicadoEntity updateBonoAplicado(BonoAplicadoEntity bonoAplicado) {
+        return bonoAplicadoRepository.save(bonoAplicado);
+    }
+
+    public boolean deleteBonoAplicado(Long id) throws Exception {
+        try{
+            bonoAplicadoRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+
+    }
 }

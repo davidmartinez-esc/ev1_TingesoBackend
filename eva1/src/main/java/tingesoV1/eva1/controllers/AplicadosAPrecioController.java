@@ -3,6 +3,7 @@ package tingesoV1.eva1.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tingesoV1.eva1.entities.BonoAplicadoEntity;
 import tingesoV1.eva1.entities.DescuentoAplicadoEntity;
 import tingesoV1.eva1.entities.RecargoAplicadoEntity;
 import tingesoV1.eva1.services.AplicadosAPrecioService;
@@ -67,6 +68,35 @@ public class AplicadosAPrecioController {
         var isDeleted= aplicadosAPrecioService.deleteDescuentoAplicado(id);
         return ResponseEntity.noContent().build();
     }
+
+
+    //BONO APLICADO-----------------------------------------------
+
+
+
+    @GetMapping("/bonosAplicados/")
+    public ResponseEntity<List<BonoAplicadoEntity>> listBonosAplicados() {
+        List<BonoAplicadoEntity> bonosAplicados = aplicadosAPrecioService.getBonosAplicados();
+        return ResponseEntity.ok(bonosAplicados);
+    }
+
+    @PostMapping("/bonosAplicados/")
+    public ResponseEntity<BonoAplicadoEntity> saveBonoAplicado(@RequestBody BonoAplicadoEntity bonoAplicadoEntity) {
+        BonoAplicadoEntity newBonoAplicado = aplicadosAPrecioService.saveBonoAplicado(bonoAplicadoEntity);
+        return ResponseEntity.ok(newBonoAplicado);
+    }
+    @PutMapping("/bonosAplicados/")
+    public ResponseEntity<BonoAplicadoEntity> updateDescuentoAplicado(@RequestBody BonoAplicadoEntity bonoAplicado){
+        BonoAplicadoEntity bonoAplicadoUpdated = aplicadosAPrecioService.updateBonoAplicado(bonoAplicado);
+        return ResponseEntity.ok(bonoAplicadoUpdated);
+    }
+
+    @DeleteMapping("/bonosAplicados/{id}")
+    public ResponseEntity<Boolean> deleteBonoAplicadoById(@PathVariable Long id) throws Exception {
+        var isDeleted= aplicadosAPrecioService.deleteBonoAplicado(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }

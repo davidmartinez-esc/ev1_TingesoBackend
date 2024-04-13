@@ -1,6 +1,8 @@
 package tingesoV1.eva1.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tingesoV1.eva1.repositories.BonoAplicadoRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,6 +12,17 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class AplicadosAPrecioNoTabuladosService {
+    private final int descuentosDispToyota=5;
+    private final int montoBonoToyota=70000;
+    private final int descuentosDispFord=2;
+    private final int montoBonoForda=50000;
+    private final int descuentosDispHyundai=2;
+    private final int montoBonoHyundai=30000;
+    private final int descuentosDispHonda=7;
+    private final int montoBonoHonda=40000;
+
+    @Autowired
+    BonoAplicadoRepository bonoAplicadoRepository;
 
     public boolean disponibilidadDescuentoPorHoraIngreso(LocalTime horaIngreso, Date fechaIngreso){
         int diaDeIngreso;
@@ -41,7 +54,11 @@ public class AplicadosAPrecioNoTabuladosService {
        return porecentajeRecargo*difInt;
     }
 
-    public void descuentoPorBono(){
+    public void descuentoPorBono(String tipoDeMoto,int mes){
+        int vecesPorMes=20882;
+
+        vecesPorMes=bonoAplicadoRepository.contarBonosPorMes(mes);
+
 
         return;
     }
