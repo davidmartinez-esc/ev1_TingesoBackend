@@ -19,7 +19,7 @@ public class RecargoPorAntiguedadEntity {
 
     private String antiguedad;
 
-    private String tipoDeMotor;
+    private String tipoDeVehiculo;
 
     private int porcentajeRecargo;
 }

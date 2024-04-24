@@ -18,7 +18,7 @@ public class RecargoPorKilometrajeEntity {
 
     private String kilometraje;
 
-    private String tipoDeMotor;
+    private String tipoDeVehiculo;
 
     private int porcentajeRecargo;
 

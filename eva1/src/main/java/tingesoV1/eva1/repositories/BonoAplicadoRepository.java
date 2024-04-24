@@ -20,7 +20,10 @@ public interface BonoAplicadoRepository extends JpaRepository<BonoAplicadoEntity
     @Query(value = "SELECT COUNT(b.id) " +
             "FROM bono_aplicado b " +
             "JOIN ingreso_a_rep i ON i.id=b.id_ingreso " +
-            "WHERE date.part('month',fechaIngreso)=:mes", nativeQuery = true)
-    Integer contarBonosPorMes(@Param("mes") int mes);
+            "JOIN vehiculo v ON i.id_vehiculo=v.id"+
+            "WHERE date.part('month',i.fecha_ingreso)=:mes AND v.marca=:marca", nativeQuery = true)
+    Integer contarBonosPorMes(@Param("mes") int mes,@Param("marca") String marca);
+
+
 
 }

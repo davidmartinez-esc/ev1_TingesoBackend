@@ -1,0 +1,121 @@
+package tingesoV1.eva1.services;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import tingesoV1.eva1.entities.RepEspecificaEntity;
+import tingesoV1.eva1.repositories.RepEspecificaRepository;
+
+import java.util.ArrayList;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
+
+
+public class RepEspecificaServiceTest {
+    @Before
+    public void init() {
+        MockitoAnnotations.openMocks(this);
+    }
+    @Mock
+    private RepEspecificaRepository repEspecificaRepository;
+
+    @InjectMocks
+    private RepEspecificaService repEspecificaService;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+
+
+    @Test
+     public void whenGetRepEspecifica_thenCorrect(){
+
+        RepEspecificaEntity repEspecificaTest=new RepEspecificaEntity();
+
+
+        repEspecificaTest.setId(12L);
+        repEspecificaTest.setIdIngresoARep(1);
+        repEspecificaTest.setPrecioDeLaReparacion(125000);
+        repEspecificaTest.setNombreDeLaRep("REP ELECTRICA");
+
+
+
+        RepEspecificaEntity repEspecificaTest2=new RepEspecificaEntity();
+
+        repEspecificaTest.setId(13L);
+        repEspecificaTest.setIdIngresoARep(2);
+        repEspecificaTest.setPrecioDeLaReparacion(122000);
+        repEspecificaTest.setNombreDeLaRep("REP ELECTRICA");
+
+
+        ArrayList<RepEspecificaEntity> repEspecificasLista=new ArrayList<>();
+
+        repEspecificasLista.add(repEspecificaTest);
+        repEspecificasLista.add(repEspecificaTest2);
+
+        when(repEspecificaRepository.findAll()).thenReturn(repEspecificasLista);
+
+        ArrayList<RepEspecificaEntity> resultado = repEspecificaService.getAllReparacionesEspecificas();
+
+        assertThat(2).isEqualTo(resultado.size());
+    }
+
+    @Test
+    public void whenSaveRepEspecifica_thenCorrect(){
+        RepEspecificaEntity repEspecificaTest=new RepEspecificaEntity();
+
+
+        repEspecificaTest.setId(12L);
+        repEspecificaTest.setIdIngresoARep(1);
+        repEspecificaTest.setPrecioDeLaReparacion(125000);
+        repEspecificaTest.setNombreDeLaRep("REP ELECTRICA");
+
+        when(repEspecificaRepository.save(repEspecificaTest)).thenReturn(repEspecificaTest);
+
+        RepEspecificaEntity repEspecificaResponse= repEspecificaService.saveTipoDeRep(repEspecificaTest);
+
+        assertEquals(repEspecificaResponse,repEspecificaTest);
+    }
+
+    @Test
+    public void whenUpdateRepEspecifica_thenCorrect(){
+        RepEspecificaEntity repEspecificaTest=new RepEspecificaEntity();
+
+
+        repEspecificaTest.setId(12L);
+        repEspecificaTest.setIdIngresoARep(1);
+        repEspecificaTest.setPrecioDeLaReparacion(125000);
+        repEspecificaTest.setNombreDeLaRep("REP ELECTRICA");
+
+
+
+        when(repEspecificaRepository.save(repEspecificaTest)).thenReturn(repEspecificaTest);
+
+        RepEspecificaEntity repEspecificaUpdated= repEspecificaService.updateRepEspecifica(repEspecificaTest);
+
+        assertEquals(repEspecificaUpdated,repEspecificaTest);
+    }
+
+    @Test
+    public void testDeleteRepEspecifica() throws Exception {
+        // Arrange
+        Long id = 21L;
+
+        // Act
+        boolean result;
+
+
+        result=repEspecificaService.deleteRepEspecifica(id);
+        // Assert
+        assertTrue(result);
+        verify(repEspecificaRepository, times(1)).deleteById(id);
+    }
+}
