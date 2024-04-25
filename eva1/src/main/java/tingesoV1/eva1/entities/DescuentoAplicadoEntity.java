@@ -16,7 +16,7 @@ public class DescuentoAplicadoEntity {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private String tipoDeDecuento;
+    private String tipoDeDescuento;
     private int porcentajeDescuento;
 
     private int idIngreso;

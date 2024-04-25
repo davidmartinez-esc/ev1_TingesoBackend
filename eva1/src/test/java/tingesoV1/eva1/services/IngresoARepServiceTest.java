@@ -59,25 +59,24 @@ public class IngresoARepServiceTest {
         ingresoARepTest.setHoraRecogida(horaEjemplo);
         ingresoARepTest.setFechaSalida(fechaEjemplo);
         ingresoARepTest.setHoraSalida(horaEjemplo);
+
         ingresoARepTest.setIdVehiculo(1);
         ingresoARepTest.setCostoTotal(1500000);
 
         IngresoARepEntity ingresoARepTest2=new IngresoARepEntity();
-        ingresoARepTest.setId(2L);
-        ingresoARepTest.setId(1L);
 
-        ingresoARepTest.setFechaIngreso(fechaEjemplo);
-        ingresoARepTest.setHoraIngreso(horaEjemplo);
-        ingresoARepTest.setFechaRecogida(fechaEjemplo);
-        ingresoARepTest.setHoraRecogida(horaEjemplo);
-        ingresoARepTest.setFechaSalida(fechaEjemplo);
-        ingresoARepTest.setHoraSalida(horaEjemplo);
+        ingresoARepTest2.setId(2L);
 
-        ingresoARepTest.setIdVehiculo(1);
-        ingresoARepTest.setCostoTotal(1500000);
 
-        ingresoARepTest.setIdVehiculo(1);
-        ingresoARepTest.setCostoTotal(1500000);
+        ingresoARepTest2.setFechaIngreso(fechaEjemplo);
+        ingresoARepTest2.setHoraIngreso(horaEjemplo);
+        ingresoARepTest2.setFechaRecogida(fechaEjemplo);
+        ingresoARepTest2.setHoraRecogida(horaEjemplo);
+        ingresoARepTest2.setFechaSalida(fechaEjemplo);
+        ingresoARepTest2.setHoraSalida(horaEjemplo);
+
+        ingresoARepTest2.setIdVehiculo(2);
+        ingresoARepTest2.setCostoTotal(1500000);
 
         ArrayList<IngresoARepEntity> ingresoARepsLista=new ArrayList<>();
 
@@ -110,7 +109,7 @@ public class IngresoARepServiceTest {
         ingresoARepTest.setHoraRecogida(horaEjemplo);
         ingresoARepTest.setFechaSalida(fechaEjemplo);
         ingresoARepTest.setHoraSalida(horaEjemplo);
-        ingresoARepTest.setIdVehiculo(1);
+        ingresoARepTest.setId(1L);
         ingresoARepTest.setCostoTotal(1500000);
 
         when(ingresoARepRepository.save(ingresoARepTest)).thenReturn(ingresoARepTest);
@@ -139,7 +138,7 @@ public class IngresoARepServiceTest {
         ingresoARepTest.setHoraRecogida(horaEjemplo);
         ingresoARepTest.setFechaSalida(fechaEjemplo);
         ingresoARepTest.setHoraSalida(horaEjemplo);
-        ingresoARepTest.setIdVehiculo(1);
+        ingresoARepTest.setId(1L);
         ingresoARepTest.setCostoTotal(1500000);
         when(ingresoARepRepository.save(ingresoARepTest)).thenReturn(ingresoARepTest);
 
@@ -160,5 +159,13 @@ public class IngresoARepServiceTest {
         // Assert
         assertTrue(result);
         verify(ingresoARepRepository, times(1)).deleteById(id);
+    }
+
+    @Test(expected= Exception.class)
+    public void testDeleteIngresoARepException() throws Exception {
+        doThrow(IllegalStateException.class).when(ingresoARepRepository).deleteById(1L);
+
+        boolean response=ingresoARepService.deleteIngresoARep(1L);
+
     }
 }

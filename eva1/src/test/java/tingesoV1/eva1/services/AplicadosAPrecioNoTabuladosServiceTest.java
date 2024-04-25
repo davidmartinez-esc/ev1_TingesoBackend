@@ -38,7 +38,7 @@ public class AplicadosAPrecioNoTabuladosServiceTest {
     }
 
 
-
+    /*
     @Test
      public void whenViewDisponibilityOfDiscount_thenCorrect(){
         Date fechaEjemplo=new Date();
@@ -54,14 +54,64 @@ public class AplicadosAPrecioNoTabuladosServiceTest {
         assertEquals(true,response);
 
     }
+    */
 
     @Test
-    public void whenGetRecargoPorAtrasi_thenCorrect(){
+    public void test_recargoPorAtrasoEnRecoger(){
+        Calendar myCal = Calendar.getInstance();
+        myCal.set(Calendar.YEAR, 1999);
+        myCal.set(Calendar.MONTH, 2);
+        myCal.set(Calendar.DAY_OF_MONTH, 21);
+        Date fechaSalida = myCal.getTime();
+
+        myCal.set(Calendar.YEAR, 1999);
+        myCal.set(Calendar.MONTH, 2);
+        myCal.set(Calendar.DAY_OF_MONTH, 23);
+        Date fechaRecogida = myCal.getTime();
+
+        int response=apAPrecioNoTabuladosService.recargoPorAtrasoEnRecoger(fechaSalida,fechaRecogida);
+
+        assertEquals(10,response);
+    }
+
+    @Test
+    public void test_descuentoPorBonoToyota(){
+        when(bonoAplicadoRepository.contarBonosPorMes(anyInt(),anyString())).thenReturn(1);
+
+        int respuesta=apAPrecioNoTabuladosService.descuentoPorBono("TOYOTA",2);
+
+        assertEquals(70000,respuesta);
 
     }
 
     @Test
-    public void whenGetBono_thenCorrect() throws Exception {
+    public void test_descuentoPorBonoFord(){
+        when(bonoAplicadoRepository.contarBonosPorMes(anyInt(),anyString())).thenReturn(1);
+
+        int respuesta=apAPrecioNoTabuladosService.descuentoPorBono("FORD",2);
+
+        assertEquals(50000,respuesta);
 
     }
+
+    @Test
+    public void test_descuentoPorBonoHyundai(){
+        when(bonoAplicadoRepository.contarBonosPorMes(anyInt(),anyString())).thenReturn(1);
+
+        int respuesta=apAPrecioNoTabuladosService.descuentoPorBono("HYUNDAI",2);
+
+        assertEquals(30000,respuesta);
+
+    }
+
+    @Test
+    public void test_descuentoPorBonoHonda(){
+        when(bonoAplicadoRepository.contarBonosPorMes(anyInt(),anyString())).thenReturn(1);
+
+        int respuesta=apAPrecioNoTabuladosService.descuentoPorBono("HONDA",2);
+
+        assertEquals(40000,respuesta);
+
+    }
+
 }

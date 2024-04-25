@@ -55,10 +55,10 @@ public class RecargoPorAntiguedadService {
 
 
     }
-    public Integer getRecargoPorAntiguedadByTipoDeMotor(VehiculoEntity vehiculo){
+    public Integer getRecargoPorAntiguedadPorTipo(VehiculoEntity vehiculo){
         String antiguedadString= getAntiguedadInString(vehiculo.getAnio_Fabricacion());
 
-        return recargoPorAntiguedadRepository.getRecargoByAntiguedadYTipoDeMotor(antiguedadString,vehiculo.getTipo());
+        return recargoPorAntiguedadRepository.getRecargoByAntiguedadPorTipo(antiguedadString,vehiculo.getTipo());
 
     }
 }

@@ -44,14 +44,14 @@ public class DescuentoAplicadoServiceTest {
         descuentoAplicadoTest.setId(1L);
         descuentoAplicadoTest.setPorcentajeDescuento(25);
         descuentoAplicadoTest.setIdIngreso(1);
-        descuentoAplicadoTest.setTipoDeDecuento("DESCUENTO POR NUMERO DE REPS");
+        descuentoAplicadoTest.setTipoDeDescuento("DESCUENTO POR NUMERO DE REPS");
 
         DescuentoAplicadoEntity descuentoAplicadoTest2=new DescuentoAplicadoEntity();
 
-        descuentoAplicadoTest.setId(2L);
-        descuentoAplicadoTest.setPorcentajeDescuento(25);
-        descuentoAplicadoTest.setIdIngreso(1);
-        descuentoAplicadoTest.setTipoDeDecuento("DESCUENTO POR DIA DE INGRESO");
+        descuentoAplicadoTest2.setId(2L);
+        descuentoAplicadoTest2.setPorcentajeDescuento(25);
+        descuentoAplicadoTest2.setIdIngreso(1);
+        descuentoAplicadoTest2.setTipoDeDescuento("DESCUENTO POR DIA DE INGRESO");
 
         ArrayList<DescuentoAplicadoEntity> descuentoAplicadosLista=new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class DescuentoAplicadoServiceTest {
         descuentoAplicadoTest.setId(1L);
         descuentoAplicadoTest.setPorcentajeDescuento(25);
         descuentoAplicadoTest.setIdIngreso(1);
-        descuentoAplicadoTest.setTipoDeDecuento("DESCUENTO POR NUMERO DE REPS");
+        descuentoAplicadoTest.setTipoDeDescuento("DESCUENTO POR NUMERO DE REPS");
 
         when(descuentoAplicadoRepository.save(descuentoAplicadoTest)).thenReturn(descuentoAplicadoTest);
 
@@ -90,7 +90,7 @@ public class DescuentoAplicadoServiceTest {
         descuentoAplicadoTest.setId(1L);
         descuentoAplicadoTest.setPorcentajeDescuento(25);
         descuentoAplicadoTest.setIdIngreso(1);
-        descuentoAplicadoTest.setTipoDeDecuento("DESCUENTO POR NUMERO DE REPS");
+        descuentoAplicadoTest.setTipoDeDescuento("DESCUENTO POR NUMERO DE REPS");
 
 
 
@@ -113,5 +113,13 @@ public class DescuentoAplicadoServiceTest {
         // Assert
         assertTrue(result);
         verify(descuentoAplicadoRepository, times(1)).deleteById(id);
+    }
+
+    @Test(expected= Exception.class)
+    public void testDeleteDescuentoAplicadoException() throws Exception {
+        doThrow(IllegalStateException.class).when(descuentoAplicadoRepository).deleteById(1L);
+
+        boolean response=descuentoAplicadoService.deleteDescuentoAplicado(1L);
+
     }
 }

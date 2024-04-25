@@ -3,10 +3,11 @@ package tingesoV1.eva1.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import tingesoV1.eva1.entities.PrecioPorRepEntity;
 
 import java.util.List;
-
+@Repository
 public interface PrecioPorRepRepository extends JpaRepository<PrecioPorRepEntity,Long> {
     @Query(value = "SELECT precio_gasolina FROM precio_reparacion WHERE nombre_de_la_rep = :nombre_rep", nativeQuery = true)
     Integer getPrecioRep_MotorGasolina(@Param("nombre_rep") String nombre_rep);

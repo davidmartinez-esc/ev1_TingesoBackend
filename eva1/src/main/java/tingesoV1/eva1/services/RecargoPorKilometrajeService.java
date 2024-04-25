@@ -52,10 +52,10 @@ public class RecargoPorKilometrajeService {
         }
     }
 
-    public Integer getRecargoPorAntiguedadByTipoDeMotor(int kilometraje,VehiculoEntity vehiculo){
+    public Integer getRecargoPorAntiguedadByTipoDeVehiculo(int kilometraje,VehiculoEntity vehiculo){
         String kilmetrajeString= getKilometrajeInString(kilometraje);
 
-        return recargoPorKilometrajeRepository.getRecargoByKilmetrajeYTipoDeMotor(kilmetrajeString,vehiculo.getTipo());
+        return recargoPorKilometrajeRepository.getRecargoByKilmetrajeYTipoDeVehiculo(kilmetrajeString,vehiculo.getTipo());
 
     }
 

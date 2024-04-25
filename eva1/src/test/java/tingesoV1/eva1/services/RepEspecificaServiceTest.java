@@ -50,10 +50,10 @@ public class RepEspecificaServiceTest {
 
         RepEspecificaEntity repEspecificaTest2=new RepEspecificaEntity();
 
-        repEspecificaTest.setId(13L);
-        repEspecificaTest.setIdIngresoARep(2);
-        repEspecificaTest.setPrecioDeLaReparacion(122000);
-        repEspecificaTest.setNombreDeLaRep("REP ELECTRICA");
+        repEspecificaTest2.setId(13L);
+        repEspecificaTest2.setIdIngresoARep(2);
+        repEspecificaTest2.setPrecioDeLaReparacion(122000);
+        repEspecificaTest2.setNombreDeLaRep("REP ELECTRICA");
 
 
         ArrayList<RepEspecificaEntity> repEspecificasLista=new ArrayList<>();
@@ -117,5 +117,13 @@ public class RepEspecificaServiceTest {
         // Assert
         assertTrue(result);
         verify(repEspecificaRepository, times(1)).deleteById(id);
+    }
+
+    @Test(expected= Exception.class)
+    public void testDeleteRepEspecificaException() throws Exception {
+        doThrow(IllegalStateException.class).when(repEspecificaRepository).deleteById(1L);
+
+        boolean response=repEspecificaService.deleteRepEspecifica(1L);
+
     }
 }

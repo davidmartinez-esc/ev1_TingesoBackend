@@ -29,8 +29,7 @@ public class RecargoPorKilometrajeController {
         return ResponseEntity.ok(newRecargoPorKilometraje);
     }
     @PutMapping("/")
-    public ResponseEntity<RecargoPorKilometrajeEntity> updateRecargoPorKilometraje(@RequestBody RecargoPorKilometrajeEntity
-                                                                                               recargoPorKilometraje){
+    public ResponseEntity<RecargoPorKilometrajeEntity> updateRecargoPorKilometraje(@RequestBody RecargoPorKilometrajeEntity recargoPorKilometraje){
         RecargoPorKilometrajeEntity recargoPorKilometrajeUpdated = recargoPorKilometrajeService.updateRecargoPorKilometraje(recargoPorKilometraje);
         return ResponseEntity.ok(recargoPorKilometrajeUpdated);
     }

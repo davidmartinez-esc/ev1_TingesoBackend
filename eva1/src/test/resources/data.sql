@@ -1,58 +1,59 @@
-INSERT INTO precio_reparacion (nombre_de_la_rep,precio_gasolina, precio_diesel, precio_hibrido, precio_electrico)
+INSERT INTO precio_reparacion (id, nombre_de_la_rep, precio_gasolina, precio_diesel, precio_hibrido, precio_electrico)
 VALUES
-    ('REP SISTEMA DE FRENOS',120000, 120000, 180000, 220000),
-    ('SERVICIO SISTEMA DE REFRIGERACION',130000, 130000, 190000, 230000),
-    ('REPARACIONES DE MOTOR',350000, 450000, 700000, 800000),
-    ('REPARACIONES DE TRANSMISION',210000, 210000, 300000, 300000),
-    ('REP DEL SISTEMA ELECTRICO',150000, 150000, 200000, 250000),
-    ('REP DEL SISTEMA DE ESCAPE',100000, 120000, 450000, 0),
-    ('REP DE NEUMATICOS Y RUEDAS',100000, 100000, 100000, 100000),
-    ('REP DE SUSPENSION Y DIRECCION',180000, 180000, 210000, 250000),
-    ('REP AIRE ACONDICIONA Y CALEFACCION',150000, 150000, 180000, 180000),
-    ('REP SISTEMA DE COMBUSTIBLE',130000, 140000, 220000, 0),
-    ('REP Y REEMPLAZO DE PARABRISAS Y CRISTALES',80000, 80000, 80000, 80000);
+    (1, 'REP SISTEMA DE FRENOS',120000, 120000, 180000, 220000),
+    (2, 'SERVICIO SISTEMA DE REFRIGERACION',130000, 130000, 190000, 230000),
+    (3, 'REPARACIONES DE MOTOR',350000, 450000, 700000, 800000),
+    (4, 'REPARACIONES DE TRANSMISION',210000, 210000, 300000, 300000),
+    (5, 'REP DEL SISTEMA ELECTRICO',150000, 150000, 200000, 250000),
+    (6, 'REP DEL SISTEMA DE ESCAPE',100000, 120000, 450000, 0),
+    (7, 'REP DE NEUMATICOS Y RUEDAS',100000, 100000, 100000, 100000),
+    (8, 'REP DE SUSPENSION Y DIRECCION',180000, 180000, 210000, 250000),
+    (9, 'REP AIRE ACONDICIONA Y CALEFACCION',150000, 150000, 180000, 180000),
+    (10, 'REP SISTEMA DE COMBUSTIBLE',130000, 140000, 220000, 0),
+    (11, 'REP Y REEMPLAZO DE PARABRISAS Y CRISTALES',80000, 80000, 80000, 80000);
 
-INSERT INTO descuento_por_numero_de_reparaciones (numero_de_reparaciones, tipo_de_motor, porcentaje_descuento)
+INSERT INTO descuento_por_numero_de_reparaciones (id, numero_de_reparaciones, tipo_de_motor, porcentaje_descuento)
 VALUES
-    ('1-2', 'GASOLINA', 5),
-    ('1-2', 'DIESEL', 7),
-    ('1-2', 'HIBRIDO', 10),
-    ('1-2', 'ELECTRICO', 8),
-    ('3-5', 'GASOLINA', 10),
-    ('3-5', 'DIESEL', 12),
-    ('3-5', 'HIBRIDO', 15),
-    ('3-5', 'ELECTRICO', 13),
-    ('6-9', 'GASOLINA', 15),
-    ('6-9', 'DIESEL', 17),
-    ('6-9', 'HIBRIDO', 20),
-    ('6-9', 'ELECTRICO', 18),
-    ('10-MAS', 'GASOLINA', 20),
-    ('10-MAS', 'DIESEL', 22),
-    ('10-MAS', 'HIBRIDO', 25),
-    ('10-MAS', 'ELECTRICO', 23);
+    (1, '1-2', 'GASOLINA', 5),
+    (2, '1-2', 'DIESEL', 7),
+    (3, '1-2', 'HIBRIDO', 10),
+    (4, '1-2', 'ELECTRICO', 8),
+    (5, '3-5', 'GASOLINA', 10),
+    (6, '3-5', 'DIESEL', 12),
+    (7, '3-5', 'HIBRIDO', 15),
+    (8, '3-5', 'ELECTRICO', 13),
+    (9, '6-9', 'GASOLINA', 15),
+    (10, '6-9', 'DIESEL', 17),
+    (11, '6-9', 'HIBRIDO', 20),
+    (12, '6-9', 'ELECTRICO', 18),
+    (13, '10-MAS', 'GASOLINA', 20),
+    (14, '10-MAS', 'DIESEL', 22),
+    (15, '10-MAS', 'HIBRIDO', 25),
+    (16, '10-MAS', 'ELECTRICO', 23);
 
 INSERT INTO recargo_por_antiguedad (id, antiguedad, tipo_de_vehiculo, porcentaje_recargo)
 VALUES
-    (26, '0-5', 'SEDAN', 0),
-    (27, '0-5', 'HATCHBACK', 0),
-    (28, '0-5', 'SUV', 0),
-    (29, '0-5', 'PICKUP', 0),
-    (30, '0-5', 'FURGONETA', 0),
-    (31, '6-10', 'SEDAN', 5),
-    (32, '6-10', 'HATCHBACK', 5),
-    (33, '6-10', 'SUV', 7),
-    (34, '6-10', 'PICKUP', 7),
-    (35, '6-10', 'FURGONETA', 7),
-    (36, '11-15', 'SEDAN', 9),
-    (37, '11-15', 'HATCHBACK', 9),
-    (38, '11-15', 'SUV', 11),
-    (39, '11-15', 'PICKUP', 11),
-    (40, '11-15', 'FURGONETA', 11),
-    (41, '16-MAS', 'SEDAN', 15),
-    (42, '16-MAS', 'HATCHBACK', 15),
-    (43, '16-MAS', 'SUV', 20),
-    (44, '16-MAS', 'PICKUP', 20),
-    (45, '16-MAS', 'FURGONETA', 20);
+    (1, '0-5', 'SEDAN', 0),
+    (2, '0-5', 'HATCHBACK', 0),
+    (3, '0-5', 'SUV', 0),
+    (4, '0-5', 'PICKUP', 0),
+    (5, '0-5', 'FURGONETA', 0),
+    (6, '6-10', 'SEDAN', 5),
+    (7, '6-10', 'HATCHBACK', 5),
+    (8, '6-10', 'SUV', 7),
+    (9, '6-10', 'PICKUP', 7),
+    (10, '6-10', 'FURGONETA', 7),
+    (11, '11-15', 'SEDAN', 9),
+    (12, '11-15', 'HATCHBACK', 9),
+    (13, '11-15', 'SUV', 11),
+    (14, '11-15', 'PICKUP', 11),
+    (15, '11-15', 'FURGONETA', 11),
+    (16, '16-MAS', 'SEDAN', 15),
+    (17, '16-MAS', 'HATCHBACK', 15),
+    (18, '16-MAS', 'SUV', 20),
+    (19, '16-MAS', 'PICKUP', 20),
+    (20, '16-MAS', 'FURGONETA', 20);
+
 
 INSERT INTO recargo_por_kilometraje (id, kilometraje, tipo_de_vehiculo, porcentaje_recargo)
 VALUES

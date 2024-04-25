@@ -48,12 +48,12 @@ public class PrecioPorRepServiceTest {
         precioPorRepTest.setPrecioGasolina(12000);
 
         PrecioPorRepEntity precioPorRepTest2=new PrecioPorRepEntity();
-        precioPorRepTest.setId(2L);
-        precioPorRepTest.setNombreDeLaRep("LIMPIEZA MINUCIOSA");
-        precioPorRepTest.setPrecioDiesel(200000);
-        precioPorRepTest.setPrecioElectrico(200000);
-        precioPorRepTest.setPrecioHibrido(200000);
-        precioPorRepTest.setPrecioGasolina(12000);
+        precioPorRepTest2.setId(2L);
+        precioPorRepTest2.setNombreDeLaRep("LIMPIEZA MINUCIOSA");
+        precioPorRepTest2.setPrecioDiesel(200000);
+        precioPorRepTest2.setPrecioElectrico(200000);
+        precioPorRepTest2.setPrecioHibrido(200000);
+        precioPorRepTest2.setPrecioGasolina(12000);
 
         ArrayList<PrecioPorRepEntity> precioPorRepsLista=new ArrayList<>();
 
@@ -119,4 +119,53 @@ public class PrecioPorRepServiceTest {
         assertTrue(result);
         verify(precioPorRepRepository, times(1)).deleteById(id);
     }
+
+    @Test(expected= Exception.class)
+    public void testDeleteprecioPorRepException() throws Exception {
+        doThrow(IllegalStateException.class).when(precioPorRepRepository).deleteById(1L);
+
+        boolean response=precioPorRepService.deletePrecioPorRep(1L);
+
+    }
+
+    @Test
+    public void test_getPrecioByTipoRepYMotorDiesel(){
+        when(precioPorRepRepository.getPrecioRep_MotorDiesel(anyString())).thenReturn(12000);
+
+        int response_Diesel=
+                precioPorRepService.getPrecioByTipoRepYTipoDeMotor("REP ELECTRICA","DIESEL");
+
+        assertEquals(12000,response_Diesel);
+
+
+    }
+
+    @Test
+    public void test_getPrecioByTipoRepYMotorElectrico(){
+        when(precioPorRepRepository.getPrecioRep_MotorElectrico(anyString())).thenReturn(20000);
+        int response_Electrico=
+                precioPorRepService.getPrecioByTipoRepYTipoDeMotor("REP ELECTRICA","ELECTRICO");
+        assertEquals(20000,response_Electrico);
+
+    }
+
+    @Test
+    public void test_getPrecioByTipoRepYMotoreGasolina(){
+        when(precioPorRepRepository.getPrecioRep_MotorGasolina(anyString())).thenReturn(30000);
+        int response_Gasolina=
+                precioPorRepService.getPrecioByTipoRepYTipoDeMotor("REP ELECTRICA","GASOLINA");
+
+        assertEquals(30000,response_Gasolina);
+    }
+
+    @Test
+    public void test_getPrecioByTipoRepYMotoreHibrido(){
+        when(precioPorRepRepository.getPrecioRep_MotorHibrido(anyString())).thenReturn(40000);
+        int response_Hibrido=
+                precioPorRepService.getPrecioByTipoRepYTipoDeMotor("REP ELECTRICA","HIBRIDO");
+
+        assertEquals(40000,response_Hibrido);
+
+    }
+
 }

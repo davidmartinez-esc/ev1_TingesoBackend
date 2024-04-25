@@ -50,10 +50,10 @@ public class DescuentoPorNRepServiceTest {
         DescuentoPorNRepEntity descuentoPorNRepTest2=new DescuentoPorNRepEntity();
 
 
-        descuentoPorNRepTest.setId(2L);
-        descuentoPorNRepTest.setNumeroDeReparaciones("0-2");
-        descuentoPorNRepTest.setPorcentajeDescuento(15);
-        descuentoPorNRepTest.setTipoDeMotor("DIESEL");
+        descuentoPorNRepTest2.setId(2L);
+        descuentoPorNRepTest2.setNumeroDeReparaciones("0-2");
+        descuentoPorNRepTest2.setPorcentajeDescuento(15);
+        descuentoPorNRepTest2.setTipoDeMotor("DIESEL");
 
         ArrayList<DescuentoPorNRepEntity> descuentoPorNRepsLista=new ArrayList<>();
 
@@ -112,5 +112,13 @@ public class DescuentoPorNRepServiceTest {
         // Assert
         assertTrue(result);
         verify(descuentoPorNRepRepository, times(1)).deleteById(id);
+    }
+
+    @Test(expected= Exception.class)
+    public void testDeleteDescuentoNRepException() throws Exception {
+        doThrow(IllegalStateException.class).when(descuentoPorNRepRepository).deleteById(1L);
+
+        boolean response=descuentoPorNRepService.deleteDescuentoPorNRep(1L);
+
     }
 }

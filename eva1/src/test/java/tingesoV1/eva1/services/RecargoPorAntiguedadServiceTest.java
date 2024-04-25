@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import tingesoV1.eva1.entities.RecargoPorAntiguedadEntity;
+import tingesoV1.eva1.entities.VehiculoEntity;
 import tingesoV1.eva1.repositories.RecargoPorAntiguedadRepository;
 
 import java.util.ArrayList;
@@ -47,10 +48,10 @@ public class RecargoPorAntiguedadServiceTest {
         recargoPorAntiguedadTest.setTipoDeVehiculo("SEDAN");
 
         RecargoPorAntiguedadEntity recargoPorAntiguedadTest2=new RecargoPorAntiguedadEntity();
-        recargoPorAntiguedadTest.setId(1L);
-        recargoPorAntiguedadTest.setAntiguedad("0-5");
-        recargoPorAntiguedadTest.setPorcentajeRecargo(15);
-        recargoPorAntiguedadTest.setTipoDeVehiculo("HATCHBACK");
+        recargoPorAntiguedadTest2.setId(1L);
+        recargoPorAntiguedadTest2.setAntiguedad("0-5");
+        recargoPorAntiguedadTest2.setPorcentajeRecargo(15);
+        recargoPorAntiguedadTest2.setTipoDeVehiculo("HATCHBACK");
 
         ArrayList<RecargoPorAntiguedadEntity> recargoPorAntiguedadsLista=new ArrayList<>();
 
@@ -109,4 +110,90 @@ public class RecargoPorAntiguedadServiceTest {
         assertTrue(result);
         verify(recargoPorAntiguedadRepository, times(1)).deleteById(id);
     }
+
+    @Test(expected= Exception.class)
+    public void testDeleteVehiculoException() throws Exception {
+        doThrow(IllegalStateException.class).when(recargoPorAntiguedadRepository).deleteById(1L);
+
+        boolean response=recargoPorAntiguedadService.deleteRecargoPorAntiguedad(1L);
+
+    }
+
+    @Test
+    public void testGetRecargoPorAntiguedadByTipo(){
+        int anioFabricacion=1960;
+
+        VehiculoEntity vehiculoPrueba=new VehiculoEntity();
+
+        vehiculoPrueba.setAnio_Fabricacion(anioFabricacion);
+        vehiculoPrueba.setTipo("PICKUP");
+
+        when(recargoPorAntiguedadRepository.getRecargoByAntiguedadPorTipo("16-MAS","PICKUP")).thenReturn(20);
+
+        Integer objetoRespuesta=recargoPorAntiguedadService.getRecargoPorAntiguedadPorTipo(vehiculoPrueba);
+        int respuesta2=objetoRespuesta;
+
+        assertEquals(20,respuesta2);
+
+    }
+
+    @Test
+    public void testGetRecargoPorAntiguedadByTipoCon1_AnioAntiguedad(){
+        int anioFabricacion=2023;
+
+        VehiculoEntity vehiculoPrueba=new VehiculoEntity();
+
+        vehiculoPrueba.setAnio_Fabricacion(anioFabricacion);
+        vehiculoPrueba.setTipo("PICKUP");
+
+        when(recargoPorAntiguedadRepository.getRecargoByAntiguedadPorTipo("0-5","PICKUP")).thenReturn(0);
+
+        Integer objetoRespuesta=recargoPorAntiguedadService.getRecargoPorAntiguedadPorTipo(vehiculoPrueba);
+        int respuesta2=objetoRespuesta;
+
+        assertEquals(0,respuesta2);
+
+    }
+
+
+
+    @Test
+    public void testGetRecargoPorAntiguedadByTipoCon6_AniosAntiguedad(){
+        int anioFabricacion=2018;
+
+        VehiculoEntity vehiculoPrueba=new VehiculoEntity();
+
+        vehiculoPrueba.setAnio_Fabricacion(anioFabricacion);
+        vehiculoPrueba.setTipo("PICKUP");
+
+        when(recargoPorAntiguedadRepository.getRecargoByAntiguedadPorTipo("6-10","PICKUP")).thenReturn(7);
+
+        Integer objetoRespuesta=recargoPorAntiguedadService.getRecargoPorAntiguedadPorTipo(vehiculoPrueba);
+        int respuesta2=objetoRespuesta;
+
+        assertEquals(7,respuesta2);
+
+
+    }
+
+    @Test
+    public void testGetRecargoPorAntiguedadByTipoCon12_AniosAntiguedad(){
+        int anioFabricacion=2012;
+
+        VehiculoEntity vehiculoPrueba=new VehiculoEntity();
+
+        vehiculoPrueba.setAnio_Fabricacion(anioFabricacion);
+        vehiculoPrueba.setTipo("PICKUP");
+
+        when(recargoPorAntiguedadRepository.getRecargoByAntiguedadPorTipo("11-15","PICKUP")).thenReturn(11);
+
+        Integer objetoRespuesta=recargoPorAntiguedadService.getRecargoPorAntiguedadPorTipo(vehiculoPrueba);
+        int respuesta2=objetoRespuesta;
+
+        assertEquals(11,respuesta2);
+
+
+    }
+
 }
+

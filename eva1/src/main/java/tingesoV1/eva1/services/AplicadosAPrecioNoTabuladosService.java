@@ -23,14 +23,13 @@ public class AplicadosAPrecioNoTabuladosService {
     @Autowired
     BonoAplicadoRepository bonoAplicadoRepository;
 
+
+    /*
     public Boolean disponibilidadDescuentoPorHoraIngreso(LocalTime horaIngreso, Date fechaIngreso){
         int diaDeIngreso;
         Boolean response=false;
-        /*
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(fechaIngreso);
-        diaDeIngreso=cal.get(Calendar.DAY_OF_WEEK);
-        */
+
+
 
         TimeZone tz = TimeZone.getTimeZone("GMT-4");
         Locale loc = new Locale("cl", "CL", "CL");
@@ -44,7 +43,7 @@ public class AplicadosAPrecioNoTabuladosService {
         LocalTime limiteSuperior = LocalTime.of(12,0);
 
         if (horaIngreso.isAfter(limiteInferior) && horaIngreso.isBefore(limiteSuperior)){
-            if (dia==3 || dia==5){
+            if (dia==2 || dia==5){
                 return response=true;
             }
             return response=false;
@@ -53,28 +52,29 @@ public class AplicadosAPrecioNoTabuladosService {
 
 
     }
+    */
 
     public int recargoPorAtrasoEnRecoger(Date fechaSalida,Date fechaRecogida){
         int porecentajeRecargo=5;
         long difEnMilisegundos = Math.abs(fechaRecogida.getTime() - fechaSalida.getTime());
         long dif = TimeUnit.DAYS.convert(difEnMilisegundos, TimeUnit.MILLISECONDS);
 
-        int difInt= (int) dif;
-       return porecentajeRecargo*difInt;
+        int diasDeAtraso= (int) dif;
+       return porecentajeRecargo*diasDeAtraso;
     }
 
     public int descuentoPorBono(String marca,int mes){
-        int vecesPorMes=20882;
+        int vecesQueBonoFueEntregadoXMes=20882;
 
-        vecesPorMes=bonoAplicadoRepository.contarBonosPorMes(mes,marca);
+        vecesQueBonoFueEntregadoXMes=bonoAplicadoRepository.contarBonosPorMes(mes,marca);
 
-        if (vecesPorMes<descuentosDispToyota && marca.equals("TOYOTA")){
+        if (vecesQueBonoFueEntregadoXMes<descuentosDispToyota && marca.equals("TOYOTA")){
             return montoBonoToyota;
-        } else if (vecesPorMes<descuentosDispFord && marca.equals("FORD")){
+        } else if (vecesQueBonoFueEntregadoXMes<descuentosDispFord && marca.equals("FORD")){
             return montoBonoFord;
-        } else if (vecesPorMes<descuentosDispHyundai && marca.equals("HYUNDAY")) {
+        } else if (vecesQueBonoFueEntregadoXMes<descuentosDispHyundai && marca.equals("HYUNDAI")) {
             return montoBonoHyundai;
-        }else if (vecesPorMes<descuentosDispHonda && marca.equals("HONDA")) {
+        }else if (vecesQueBonoFueEntregadoXMes<descuentosDispHonda && marca.equals("HONDA")) {
             return montoBonoHonda;
         }
         return 0;

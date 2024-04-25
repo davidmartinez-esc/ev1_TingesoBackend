@@ -47,9 +47,9 @@ public class BonoAplicadoServiceTest {
 
         BonoAplicadoEntity bonoAplicadoTest2=new BonoAplicadoEntity();
 
-        bonoAplicadoTest.setId(2L);
-        bonoAplicadoTest.setMonto(122000);
-        bonoAplicadoTest.setIdIngreso(2);
+        bonoAplicadoTest2.setId(2L);
+        bonoAplicadoTest2.setMonto(122000);
+        bonoAplicadoTest2.setIdIngreso(2);
 
 
         ArrayList<BonoAplicadoEntity> bonoAplicadosLista=new ArrayList<>();
@@ -109,5 +109,12 @@ public class BonoAplicadoServiceTest {
         // Assert
         assertTrue(result);
         verify(bonoAplicadoRepository, times(1)).deleteById(id);
+    }
+    @Test(expected= Exception.class)
+    public void testDeleteBonoAplicadoException() throws Exception {
+        doThrow(IllegalStateException.class).when(bonoAplicadoRepository).deleteById(1L);
+
+        boolean response=bonoAplicadoService.deleteBonoAplicado(1L);
+
     }
 }

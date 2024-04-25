@@ -47,10 +47,10 @@ public class RecargoAplicadoServiceTest {
 
         RecargoAplicadoEntity recargoAplicadoTest2=new RecargoAplicadoEntity();
 
-        recargoAplicadoTest.setId(2l);
-        recargoAplicadoTest.setPorcentajeRecargo(15);
-        recargoAplicadoTest.setTipoDeRecargo("RECARGO POR ATRASO");
-        recargoAplicadoTest.setIdIngreso(1);
+        recargoAplicadoTest2.setId(2l);
+        recargoAplicadoTest2.setPorcentajeRecargo(15);
+        recargoAplicadoTest2.setTipoDeRecargo("RECARGO POR ATRASO");
+        recargoAplicadoTest2.setIdIngreso(1);
 
         ArrayList<RecargoAplicadoEntity> recargosAplicadosLista=new ArrayList<>();
 
@@ -108,5 +108,13 @@ public class RecargoAplicadoServiceTest {
         // Assert
         assertTrue(result);
         verify(recargoAplicadoRepository, times(1)).deleteById(id);
+    }
+
+    @Test(expected= Exception.class)
+    public void testDeleterecargoAplicadoException() throws Exception {
+        doThrow(IllegalStateException.class).when(recargoAplicadoRepository).deleteById(1L);
+
+        boolean response=recargoAplicadoService.deleteRecargoAplicado(1L);
+
     }
 }

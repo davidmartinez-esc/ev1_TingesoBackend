@@ -7,9 +7,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import tingesoV1.eva1.entities.RecargoPorKilometrajeEntity;
+import tingesoV1.eva1.entities.VehiculoEntity;
 import tingesoV1.eva1.repositories.RecargoPorKilometrajeRepository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -33,8 +35,6 @@ public class RecargoPorKilometrajeServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-
-
     @Test
      public void whenGetRecargoPorKilometraje_thenCorrect(){
 
@@ -47,10 +47,10 @@ public class RecargoPorKilometrajeServiceTest {
       recargoPorKilometrajeTest.setTipoDeVehiculo("SEDAN");
 
         RecargoPorKilometrajeEntity recargoPorKilometrajeTest2=new RecargoPorKilometrajeEntity();
-        recargoPorKilometrajeTest.setId(2L);
-        recargoPorKilometrajeTest.setKilometraje("12.001-15.000");
-        recargoPorKilometrajeTest.setPorcentajeRecargo(15);
-        recargoPorKilometrajeTest.setTipoDeVehiculo("PICKUP");
+        recargoPorKilometrajeTest2.setId(2L);
+        recargoPorKilometrajeTest2.setKilometraje("12.001-15.000");
+        recargoPorKilometrajeTest2.setPorcentajeRecargo(15);
+        recargoPorKilometrajeTest2.setTipoDeVehiculo("PICKUP");
 
         ArrayList<RecargoPorKilometrajeEntity> recargoPorKilometrajesLista=new ArrayList<>();
 
@@ -109,5 +109,59 @@ public class RecargoPorKilometrajeServiceTest {
         // Assert
         assertTrue(result);
         verify(recargoPorKilometrajeRepository, times(1)).deleteById(id);
+    }
+
+    @Test(expected= Exception.class)
+    public void testDeleteRecargoPorKlometrajeException() throws Exception {
+        doThrow(IllegalStateException.class).when(recargoPorKilometrajeRepository).deleteById(1L);
+
+        boolean response=recargoPorKilometrajeService.deleteRecargoPorKilometraje(1L);
+
+    }
+
+    @Test
+    public void whenGetRecargoKilometraje5000km_thenCorrect(){
+        VehiculoEntity vehiculoTest=new VehiculoEntity();
+
+
+        vehiculoTest.setAnio_Fabricacion(1968);
+        vehiculoTest.setPatente("ABC123");
+        vehiculoTest.setMarca("TOYOTA");
+        vehiculoTest.setModelo("COROLLA");
+        vehiculoTest.setTipo("SEDAN");
+        vehiculoTest.setTipoMotor("GASOLINA");
+        vehiculoTest.setNumeroDeAsientos(5);
+
+        when(recargoPorKilometrajeRepository.
+                getRecargoByKilmetrajeYTipoDeVehiculo("5.001-12.000","SEDAN")).thenReturn(3);
+
+        Integer respuesta=
+                recargoPorKilometrajeService.getRecargoPorAntiguedadByTipoDeVehiculo(6000,vehiculoTest);
+
+        int repuestaParsed= respuesta;
+        assertEquals(Integer.valueOf(3),respuesta);
+    }
+
+    @Test
+    public void whenGetRecargoKilometraje20000km_thenCorrect(){
+        VehiculoEntity vehiculoTest=new VehiculoEntity();
+
+
+        vehiculoTest.setAnio_Fabricacion(1968);
+        vehiculoTest.setPatente("ABC123");
+        vehiculoTest.setMarca("TOYOTA");
+        vehiculoTest.setModelo("COROLLA");
+        vehiculoTest.setTipo("SEDAN");
+        vehiculoTest.setTipoMotor("GASOLINA");
+        vehiculoTest.setNumeroDeAsientos(5);
+
+        when(recargoPorKilometrajeRepository.
+                getRecargoByKilmetrajeYTipoDeVehiculo("12.001-25.000","SEDAN")).thenReturn(7);
+
+        Integer respuesta=
+                recargoPorKilometrajeService.getRecargoPorAntiguedadByTipoDeVehiculo(20000,vehiculoTest);
+
+        int repuestaParsed= respuesta;
+        assertEquals(Integer.valueOf(7),respuesta);
     }
 }

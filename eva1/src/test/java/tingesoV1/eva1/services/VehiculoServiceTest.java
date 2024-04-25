@@ -1,8 +1,10 @@
 package tingesoV1.eva1.services;
 
+import org.hibernate.mapping.Any;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -54,13 +56,13 @@ public class VehiculoServiceTest {
         vehiculoTest.setNumeroDeAsientos(5);
 
         VehiculoEntity vehiculoTest2=new VehiculoEntity();
-        vehiculoTest.setAnio_Fabricacion(1966);
-        vehiculoTest.setPatente("ACC123");
-        vehiculoTest.setMarca("SUZUKI");
-        vehiculoTest.setModelo("X2345");
-        vehiculoTest.setTipo("SEDAN");
-        vehiculoTest.setTipoMotor("GASOLINA");
-        vehiculoTest.setNumeroDeAsientos(5);
+        vehiculoTest2.setAnio_Fabricacion(1966);
+        vehiculoTest2.setPatente("ACC123");
+        vehiculoTest2.setMarca("SUZUKI");
+        vehiculoTest2.setModelo("X2345");
+        vehiculoTest2.setTipo("SEDAN");
+        vehiculoTest2.setTipoMotor("GASOLINA");
+        vehiculoTest2.setNumeroDeAsientos(5);
 
         ArrayList<VehiculoEntity> vehiculosLista=new ArrayList<>();
 
@@ -107,8 +109,6 @@ public class VehiculoServiceTest {
         vehiculoTest.setTipoMotor("GASOLINA");
         vehiculoTest.setNumeroDeAsientos(5);
 
-
-
         when(vehiculoRepository.save(vehiculoTest)).thenReturn(vehiculoTest);
 
         VehiculoEntity vehiculoUpdated=vehiculoService.updateVehiculo(vehiculoTest);
@@ -128,5 +128,13 @@ public class VehiculoServiceTest {
         // Assert
         assertTrue(result);
         verify(vehiculoRepository, times(1)).deleteById(id);
+    }
+
+    @Test(expected= Exception.class)
+    public void testDeleteVehiculoException() throws Exception {
+        doThrow(IllegalStateException.class).when(vehiculoRepository).deleteById(1L);
+
+        boolean response=vehiculoService.deleteVehiculo(1L);
+
     }
 }
