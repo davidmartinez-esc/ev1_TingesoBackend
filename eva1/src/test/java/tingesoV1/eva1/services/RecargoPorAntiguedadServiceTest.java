@@ -39,16 +39,13 @@ public class RecargoPorAntiguedadServiceTest {
     @Test
      public void whenGetRecargoPorAntiguedad_thenCorrect(){
 
-        RecargoPorAntiguedadEntity recargoPorAntiguedadTest=new RecargoPorAntiguedadEntity();
+        RecargoPorAntiguedadEntity recargoPorAntiguedadTest=
+                new RecargoPorAntiguedadEntity(1L,"0-5","SEDAN",15);
 
-
-        recargoPorAntiguedadTest.setId(1L);
-        recargoPorAntiguedadTest.setAntiguedad("0-5");
-        recargoPorAntiguedadTest.setPorcentajeRecargo(15);
-        recargoPorAntiguedadTest.setTipoDeVehiculo("SEDAN");
 
         RecargoPorAntiguedadEntity recargoPorAntiguedadTest2=new RecargoPorAntiguedadEntity();
-        recargoPorAntiguedadTest2.setId(1L);
+
+        recargoPorAntiguedadTest2.setId(2L);
         recargoPorAntiguedadTest2.setAntiguedad("0-5");
         recargoPorAntiguedadTest2.setPorcentajeRecargo(15);
         recargoPorAntiguedadTest2.setTipoDeVehiculo("HATCHBACK");

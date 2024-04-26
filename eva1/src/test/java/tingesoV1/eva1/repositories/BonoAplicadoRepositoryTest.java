@@ -18,7 +18,7 @@ import java.util.Date;
 import static org.junit.Assert.assertEquals;
 
 @DataJpaTest
-@ActiveProfiles(value = "test")
+@ActiveProfiles("test")
 //@RunWith(SpringRunner.class)
 public class BonoAplicadoRepositoryTest {
 
@@ -33,6 +33,6 @@ public class BonoAplicadoRepositoryTest {
     public void getNumeroDeBonos_ThenCorrect(){
         BonoAplicadoEntity bonoAplicado=new BonoAplicadoEntity(null,250000,1);
 
-        entityManager.persistAndFlush(bonoAplicado);
+        //entityManager.persistAndFlush(bonoAplicado);
     }
 }

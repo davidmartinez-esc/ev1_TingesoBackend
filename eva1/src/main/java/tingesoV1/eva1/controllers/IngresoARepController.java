@@ -4,8 +4,7 @@ package tingesoV1.eva1.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tingesoV1.eva1.dto.CreacionIngreso;
-import tingesoV1.eva1.dto.FormRegistroIngresoRep;
+
 import tingesoV1.eva1.entities.IngresoARepEntity;
 import tingesoV1.eva1.entities.IngresoARepEntity;
 import tingesoV1.eva1.services.IngresoARepService;

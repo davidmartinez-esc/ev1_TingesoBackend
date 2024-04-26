@@ -38,12 +38,10 @@ public class BonoAplicadoServiceTest {
     @Test
      public void whenGetBonoAplicado_thenCorrect(){
 
-        BonoAplicadoEntity bonoAplicadoTest=new BonoAplicadoEntity();
+        BonoAplicadoEntity bonoAplicadoTest=new BonoAplicadoEntity(1L,12000,1);
 
 
-        bonoAplicadoTest.setId(1L);
-        bonoAplicadoTest.setMonto(12000);
-        bonoAplicadoTest.setIdIngreso(1);
+
 
         BonoAplicadoEntity bonoAplicadoTest2=new BonoAplicadoEntity();
 

@@ -38,13 +38,11 @@ public class RecargoPorKilometrajeServiceTest {
     @Test
      public void whenGetRecargoPorKilometraje_thenCorrect(){
 
-        RecargoPorKilometrajeEntity recargoPorKilometrajeTest=new RecargoPorKilometrajeEntity();
+        RecargoPorKilometrajeEntity recargoPorKilometrajeTest=
+                new RecargoPorKilometrajeEntity(1L,"12.001-15.000","SEDAN",15);
 
 
-      recargoPorKilometrajeTest.setId(1L);
-      recargoPorKilometrajeTest.setKilometraje("12.001-15.000");
-      recargoPorKilometrajeTest.setPorcentajeRecargo(15);
-      recargoPorKilometrajeTest.setTipoDeVehiculo("SEDAN");
+
 
         RecargoPorKilometrajeEntity recargoPorKilometrajeTest2=new RecargoPorKilometrajeEntity();
         recargoPorKilometrajeTest2.setId(2L);

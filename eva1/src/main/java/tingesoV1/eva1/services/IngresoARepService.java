@@ -3,8 +3,7 @@ package tingesoV1.eva1.services;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tingesoV1.eva1.dto.CreacionIngreso;
-import tingesoV1.eva1.dto.FormRegistroIngresoRep;
+
 import tingesoV1.eva1.entities.IngresoARepEntity;
 
 import tingesoV1.eva1.entities.IngresoARepEntity;
