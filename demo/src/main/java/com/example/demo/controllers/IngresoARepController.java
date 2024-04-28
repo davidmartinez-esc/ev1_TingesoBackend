@@ -44,5 +44,11 @@ public class IngresoARepController {
         var isDeleted= ingresoARepService.deleteIngresoARep(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<List<IngresoARepEntity>> getReparacionesByIdVehiculo(@PathVariable int id) {
+        List<IngresoARepEntity> reparaciones = ingresoARepService.getReparacionesByIdVehiculo(id);
+        return ResponseEntity.ok(reparaciones);
+    }
 }
 

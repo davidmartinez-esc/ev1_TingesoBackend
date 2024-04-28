@@ -22,6 +22,12 @@ public class VehiculoController {
         return ResponseEntity.ok(vehiculo);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<VehiculoEntity> getVehiculoById(@PathVariable Long id) {
+        VehiculoEntity vehiculo = vehiculoService.getVehiculoById(id);
+        return ResponseEntity.ok(vehiculo);
+    }
+
     @PostMapping("/")
     public ResponseEntity<VehiculoEntity> saveVehiculo(@RequestBody VehiculoEntity vehiculo) {
         VehiculoEntity newVehiculo = vehiculoService.saveVehiculo(vehiculo);

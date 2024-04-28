@@ -175,7 +175,48 @@ public class IngresoARepControllerTest {
                 .andExpect(status().isNoContent());
     }
 
+    @Test
+    public void getIngresoARepsByIdVehiculo_ShouldReturnIngresosAReps() throws Exception {
 
+        IngresoARepEntity ingresoARepTest=new IngresoARepEntity();
+
+
+        ingresoARepTest.setId(1L);
+        ingresoARepTest.setIdVehiculo(1);
+        ingresoARepTest.setCostoTotal(75000);
+
+        ingresoARepTest.setFechaIngreso(new Date());
+        ingresoARepTest.setHoraIngreso(LocalTime.now());
+
+        LocalDate fechaSalida = LocalDate.now().plusDays(1);
+        ingresoARepTest.setFechaSalida(Date.from(fechaSalida.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        ingresoARepTest.setHoraSalida(LocalTime.of(15, 30)); // Supongamos que es a las 15:30
+
+        LocalDate fechaRecogida = LocalDate.now().plusDays(2);
+        ingresoARepTest.setFechaRecogida(Date.from(fechaRecogida.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        ingresoARepTest.setHoraRecogida(LocalTime.of(10, 0)); // Supongamos que es a las 10:00
+
+        //INGRESO A REP 2
+        IngresoARepEntity ingresoARepTest2=new IngresoARepEntity();
+        ingresoARepTest2.setId(2L);
+        ingresoARepTest2.setIdVehiculo(1);
+
+        ingresoARepTest2.setCostoTotal(150000);
+
+
+        List<IngresoARepEntity> ingresoARepList = new ArrayList<>();
+        ingresoARepList.add(ingresoARepTest);
+        ingresoARepList.add(ingresoARepTest2);
+
+        given(ingresoARepService.getReparacionesByIdVehiculo(1)).willReturn((ArrayList<IngresoARepEntity>) ingresoARepList);
+
+        mockMvc.perform(get("/api/v1/ingresoAReparacion/getById/{id}",1))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].idVehiculo", is(1)))
+                .andExpect(jsonPath("$[1].idVehiculo", is(1)));
+    }
 
 
 }

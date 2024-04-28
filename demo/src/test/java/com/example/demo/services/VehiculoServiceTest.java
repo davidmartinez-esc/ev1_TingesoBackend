@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -87,6 +88,26 @@ public class VehiculoServiceTest {
         when(vehiculoRepository.save(vehiculoTest)).thenReturn(vehiculoTest);
 
         VehiculoEntity vehiculoResponse=vehiculoService.saveVehiculo(vehiculoTest);
+
+        assertEquals(vehiculoResponse,vehiculoTest);
+    }
+
+    @Test
+    public void whenGetById_ThenCorrect(){
+        VehiculoEntity vehiculoTest=new VehiculoEntity();
+
+        vehiculoTest.setId(1L);
+        vehiculoTest.setAnio_Fabricacion(1968);
+        vehiculoTest.setPatente("ABC123");
+        vehiculoTest.setMarca("TOYOTA");
+        vehiculoTest.setModelo("COROLLA");
+        vehiculoTest.setTipo("SEDAN");
+        vehiculoTest.setTipoMotor("GASOLINA");
+        vehiculoTest.setNumeroDeAsientos(5);
+
+        when(vehiculoRepository.findById(1L)).thenReturn(Optional.of(vehiculoTest));
+
+        VehiculoEntity vehiculoResponse=vehiculoService.getVehiculoById(1L);
 
         assertEquals(vehiculoResponse,vehiculoTest);
     }

@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -33,12 +34,12 @@ public class AplicadosAPrecioNoTabuladosServiceTest {
     }
 
 
-    /*
+
     @Test
      public void whenViewDisponibilityOfDiscount_thenCorrect(){
         Date fechaEjemplo=new Date();
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2024, 5, 6);
+        calendar.set(2024, 05, 13);
 
         fechaEjemplo=calendar.getTime();
 
@@ -49,7 +50,7 @@ public class AplicadosAPrecioNoTabuladosServiceTest {
         assertEquals(true,response);
 
     }
-    */
+
 
     @Test
     public void test_recargoPorAtrasoEnRecoger(){

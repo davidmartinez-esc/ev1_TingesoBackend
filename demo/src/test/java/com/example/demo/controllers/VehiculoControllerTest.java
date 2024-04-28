@@ -154,6 +154,27 @@ public class VehiculoControllerTest {
                 .andExpect(status().isNoContent());
     }
 
+    @Test
+    public void getVehiculoById_ShouldReturnVehiculo() throws Exception {
+        VehiculoEntity vehiculoTest = new VehiculoEntity();
+
+        vehiculoTest.setId(1L);
+        vehiculoTest.setAnio_Fabricacion(1968);
+        vehiculoTest.setPatente("ABC123");
+        vehiculoTest.setMarca("TOYOTA");
+        vehiculoTest.setModelo("COROLLA");
+        vehiculoTest.setTipo("SEDAN");
+        vehiculoTest.setTipoMotor("GASOLINA");
+        vehiculoTest.setNumeroDeAsientos(5);
+
+        given(vehiculoService.getVehiculoById(1L)).willReturn(vehiculoTest);
+
+        mockMvc.perform(get("/api/v1/vehiculo/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.patente", is("ABC123")));
+    }
+
 
 
 

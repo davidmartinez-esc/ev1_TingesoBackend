@@ -74,4 +74,10 @@ public class IngresoARepService {
         }
 
     }
+
+    public ArrayList<IngresoARepEntity> getReparacionesByIdVehiculo(int id){
+        return (ArrayList<IngresoARepEntity>) ingresoARepRepository.findByIdVehiculo(id);
+    }
+
+
 }

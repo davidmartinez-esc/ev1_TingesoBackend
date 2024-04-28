@@ -4,7 +4,11 @@ import com.example.demo.repositories.BonoAplicadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -22,20 +26,19 @@ public class AplicadosAPrecioNoTabuladosService {
     BonoAplicadoRepository bonoAplicadoRepository;
 
 
-    /*
+
     public Boolean disponibilidadDescuentoPorHoraIngreso(LocalTime horaIngreso, Date fechaIngreso){
         int diaDeIngreso;
         Boolean response=false;
 
 
 
-        TimeZone tz = TimeZone.getTimeZone("GMT-4");
-        Locale loc = new Locale("cl", "CL", "CL");
-        Calendar calendar =new GregorianCalendar(tz);
-        calendar.setTime(fechaIngreso);
 
-        int dia=calendar.get(Calendar.DAY_OF_WEEK);
+        Calendar calendario= new GregorianCalendar();
+        calendario.setTime(fechaIngreso);
 
+        int dia=calendario.get(Calendar.DAY_OF_WEEK);
+        System.out.println(dia);
 
         LocalTime limiteInferior = LocalTime.of(9, 0);
         LocalTime limiteSuperior = LocalTime.of(12,0);
@@ -50,7 +53,7 @@ public class AplicadosAPrecioNoTabuladosService {
 
 
     }
-    */
+
 
     public int recargoPorAtrasoEnRecoger(Date fechaSalida,Date fechaRecogida){
         int porecentajeRecargo=5;

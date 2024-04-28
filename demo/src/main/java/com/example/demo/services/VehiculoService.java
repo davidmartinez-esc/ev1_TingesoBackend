@@ -27,6 +27,11 @@ public class VehiculoService {
         return vehiculoRepository.save(vehiculo);
     }
 
+    //TESTEAR
+    public VehiculoEntity getVehiculoById(Long id){
+        return vehiculoRepository.findById(id).get();
+    }
+
     public boolean deleteVehiculo(Long id) throws Exception {
         try{
             vehiculoRepository.deleteById(id);

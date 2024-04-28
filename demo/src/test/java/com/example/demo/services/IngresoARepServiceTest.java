@@ -14,6 +14,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -166,5 +167,37 @@ public class IngresoARepServiceTest {
 
         boolean response=ingresoARepService.deleteIngresoARep(1L);
 
+    }
+
+    @Test
+    public void whenGetByIdVehiculo_thenCorrect(){
+        Date fechaEjemplo=new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2018, 11, 31, 59, 59, 59);
+        fechaEjemplo=calendar.getTime();
+
+        LocalTime horaEjemplo=LocalTime.parse("12:12");
+
+        IngresoARepEntity ingresoARepTest=new IngresoARepEntity();
+
+        ingresoARepTest.setId(1L);
+
+        ingresoARepTest.setFechaIngreso(fechaEjemplo);
+        ingresoARepTest.setHoraIngreso(horaEjemplo);
+        ingresoARepTest.setFechaRecogida(fechaEjemplo);
+        ingresoARepTest.setHoraRecogida(horaEjemplo);
+        ingresoARepTest.setFechaSalida(fechaEjemplo);
+        ingresoARepTest.setHoraSalida(horaEjemplo);
+        ingresoARepTest.setIdVehiculo(1);
+        ingresoARepTest.setCostoTotal(1500000);
+
+        List<IngresoARepEntity> listaBase=new ArrayList<>();
+        listaBase.add(ingresoARepTest);
+
+        when(ingresoARepRepository.findByIdVehiculo(1)).thenReturn(listaBase);
+
+        List<IngresoARepEntity> ingresoARepUpdated=ingresoARepService.getReparacionesByIdVehiculo(1);
+
+        assertEquals(ingresoARepUpdated,listaBase);
     }
 }
