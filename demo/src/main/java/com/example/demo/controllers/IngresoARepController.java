@@ -50,5 +50,11 @@ public class IngresoARepController {
         List<IngresoARepEntity> reparaciones = ingresoARepService.getReparacionesByIdVehiculo(id);
         return ResponseEntity.ok(reparaciones);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<IngresoARepEntity> getIngresoARepById(@PathVariable Long id) {
+        IngresoARepEntity ingresoARepEntity= ingresoARepService.getIngresoARepById(id);
+        return ResponseEntity.ok(ingresoARepEntity);
+    }
 }
 

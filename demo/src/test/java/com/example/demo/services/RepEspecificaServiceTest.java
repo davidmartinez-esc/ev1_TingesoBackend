@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -126,5 +127,40 @@ public class RepEspecificaServiceTest {
 
         boolean response=repEspecificaService.deleteRepEspecifica(1L);
 
+    }
+
+
+
+    @Test
+    public void wheGetRepEspecificaByIdIngreso_ThenReturnCorrect(){
+
+        RepEspecificaEntity repEspecificaTest=new RepEspecificaEntity();
+
+
+        repEspecificaTest.setId(12L);
+        repEspecificaTest.setIdIngresoARep(1);
+        repEspecificaTest.setPrecioDeLaReparacion(125000);
+        repEspecificaTest.setNombreDeLaRep("REP ELECTRICA");
+
+
+
+        RepEspecificaEntity repEspecificaTest2=new RepEspecificaEntity();
+
+        repEspecificaTest2.setId(13L);
+        repEspecificaTest2.setIdIngresoARep(1);
+        repEspecificaTest2.setPrecioDeLaReparacion(122000);
+        repEspecificaTest2.setNombreDeLaRep("REP ELECTRICA");
+
+
+        List<RepEspecificaEntity> repEspecificasLista=new ArrayList<>();
+
+        repEspecificasLista.add(repEspecificaTest);
+        repEspecificasLista.add(repEspecificaTest2);
+
+        when(repEspecificaRepository.findByIdIngresoARep(1)).thenReturn(repEspecificasLista);
+
+        List<RepEspecificaEntity> resultado = repEspecificaService.getRepEspecificaByIdIngreso(1);
+
+        assertThat(2).isEqualTo(resultado.size());
     }
 }

@@ -134,6 +134,38 @@ public class RepEspecificaControllerTest {
     }
 
 
+    @Test
+    public void getRepEspecificasByIdIngreso_ShouldReturnRepEspecificas() throws Exception {
+
+        RepEspecificaEntity repEspecificaTest=new RepEspecificaEntity();
+
+
+        repEspecificaTest.setId(1L);
+        repEspecificaTest.setIdIngresoARep(1);
+        repEspecificaTest.setPrecioDeLaReparacion(125000);
+        repEspecificaTest.setNombreDeLaRep("REP ELECTRICA");
+
+        RepEspecificaEntity repEspecificaTest2=new RepEspecificaEntity();
+
+
+        repEspecificaTest2.setId(2L);
+        repEspecificaTest2.setIdIngresoARep(1);
+        repEspecificaTest2.setPrecioDeLaReparacion(122000);
+        repEspecificaTest2.setNombreDeLaRep("REP ELECTRICA");
+
+
+        List<RepEspecificaEntity> repEspecificasList = new ArrayList<>(Arrays.asList(repEspecificaTest, repEspecificaTest2));
+
+        given(repEspecificaService.getRepEspecificaByIdIngreso(1)).willReturn((ArrayList<RepEspecificaEntity>) repEspecificasList);
+
+        mockMvc.perform(get("/api/v1/repEspecifica/getByIdIngreso/{id}",1))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].idIngresoARep", is(1)))
+                .andExpect(jsonPath("$[1].idIngresoARep", is(1)));
+    }
+
 
 
 }

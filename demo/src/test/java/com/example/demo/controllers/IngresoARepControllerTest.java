@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 
 import com.example.demo.entities.IngresoARepEntity;
+import com.example.demo.entities.VehiculoEntity;
 import com.example.demo.services.IngresoARepService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -218,5 +219,18 @@ public class IngresoARepControllerTest {
                 .andExpect(jsonPath("$[1].idVehiculo", is(1)));
     }
 
+    @Test
+    public void getIngresosById_ShouldReturnVehiculo() throws Exception {
+        IngresoARepEntity ingresoARepTest2=new IngresoARepEntity();
+        ingresoARepTest2.setId(1L);
 
+        ingresoARepTest2.setCostoTotal(150000);
+
+        given(ingresoARepService.getIngresoARepById(1L)).willReturn(ingresoARepTest2);
+
+        mockMvc.perform(get("/api/v1/ingresoAReparacion/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.costoTotal", is(150000)));
+    }
 }

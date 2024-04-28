@@ -18,7 +18,7 @@ public class PrecioPorRepService {
         return (ArrayList<PrecioPorRepEntity>) precioPorRepRepository.findAll();
     }
 
-    //NO TERMINADA
+    //NO TESTEADA EN CONTROLLERS
     public Integer getPrecioByTipoRepYTipoDeMotor(String tipoDeRep,String tipoDeMotor){
         Integer precio=-2;
 

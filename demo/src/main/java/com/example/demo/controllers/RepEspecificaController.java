@@ -39,4 +39,10 @@ public class RepEspecificaController {
         var isDeleted= repEspecificaService.deleteRepEspecifica(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/getByIdIngreso/{id}")
+    public ResponseEntity<List<RepEspecificaEntity>> getRepsEspecificasByIdIngreso(@PathVariable int id) {
+        List<RepEspecificaEntity> reps = repEspecificaService.getRepEspecificaByIdIngreso(id);
+        return ResponseEntity.ok(reps);
+    }
 }

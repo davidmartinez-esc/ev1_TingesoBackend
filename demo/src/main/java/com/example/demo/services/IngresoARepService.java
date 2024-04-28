@@ -79,5 +79,8 @@ public class IngresoARepService {
         return (ArrayList<IngresoARepEntity>) ingresoARepRepository.findByIdVehiculo(id);
     }
 
+    public IngresoARepEntity getIngresoARepById(Long id){
+        return ingresoARepRepository.findById(id).get();
+    }
 
 }
