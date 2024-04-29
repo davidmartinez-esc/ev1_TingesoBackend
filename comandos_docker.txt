@@ -1,0 +1,1 @@
+docker run -p 8080:8080 -e DB_HOST=postgres-container -e DB_PORT=5432 -e DB_USERNAME=postgres -e DB_PASSWORD=postgres  --network eva1-network -d dddavidesc/imagen-backend
