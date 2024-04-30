@@ -25,8 +25,8 @@ pipeline{
                 dir("demo"){
                     script{
                          withDockerRegistry(credentialsId: 'docker-credentials'){
-                            bat "docker build -t dddavidesc/imagen-final-backend ."
-                            bat "docker push dddavidesc/imagen-final-backend"
+                            bat "docker build -t dddavidesc/imagen-backend-final ."
+                            bat "docker push dddavidesc/imagen-backend-final"
                         }
                     }                    
                 }
