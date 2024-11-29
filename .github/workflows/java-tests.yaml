@@ -29,10 +29,16 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('/demo/pom.xml') }}
+          key: ${{ runner.os }}-maven-${{ hashFiles('demo/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven
 
+      # Change directory to demo
+      - name: Change to demo directory
+        working-directory: demo
+        run: echo "Switched to demo directory"
+
       # Build and run tests
       - name: Run unit tests
+        working-directory: demo
         run: mvn test
