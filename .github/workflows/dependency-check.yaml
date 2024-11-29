@@ -41,7 +41,7 @@ jobs:
       # 5. Subir informe como artefacto
       - name: Upload report
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dependency-check-report
           path: demo/target/dependency-check-report.html
