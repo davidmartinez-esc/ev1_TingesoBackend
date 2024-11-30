@@ -3,10 +3,10 @@ name: Snyk Security
 on:
   push:
     branches:
-      - DevSecOps---David
+      - main
   pull_request:
     branches:
-      - DevSecOps---David
+      - main
 
 jobs:
   snyk:
